@@ -63,6 +63,7 @@ class TimelineActivity : AppCompatActivity() {
                     adapter.clear()
                     val listOfNewTweetsRetrieved = Tweet.fromJsonArray(jsonArray)
                     tweets.addAll(listOfNewTweetsRetrieved)
+                    adapter.addAll(tweets)
                     adapter.notifyDataSetChanged()
                     swipeContainer.setRefreshing(false)
                 } catch (e: Exception) {
@@ -77,6 +78,7 @@ class TimelineActivity : AppCompatActivity() {
                 throwable: Throwable?
             ) {
                 Log.i(TAG, "onFailure $statusCode")
+                Log.d("DEBUG", "Fetch timeline error", throwable)
             }
         })
     }
